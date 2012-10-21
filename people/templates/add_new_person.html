@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block container %}
+
+<div class="container round-light-container">
+	<div class="row up-down-padding">
+		<div class="span12">
+			<form class="form-horizontal left-right-padding" action="/save_person" method="POST">
+				{% csrf_token %}
+				<legend>Enter person data</legend>
+				<div class="control-group">
+					<label class="control-label">First name</label>
+					<div class="controls">
+						<input name="first_name" type="text"/>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">Last name</label>
+					<div class="controls">
+						<input name="last_name" type="text"/>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">Username</label>
+					<div class="controls">
+						<input name="username" type="text"/>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">Password</label>
+					<div class="controls">
+						<input name="password" type="text"/>
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						<button type="submit" class="btn btn-primary"><i class="icon-ok icon-white"></i> Save</button>
+						<a class="btn" href="/people"><i class="icon-refresh icon-black"></i> Cancel</a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

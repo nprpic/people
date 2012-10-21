@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/bootstrap.min.css"/>
+    <link href="/static/login.css" rel="stylesheet"/>
+    <link href="/static/people.css" rel="stylesheet"/>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
+    <script type="text/javascript" src="/static/bootstrap/bootstrap-alert.js"></script>
+</head>
+
+<body>
+    <div class="message" style="margin-top:50px; height:50px">
+        <center>
+            {% if messages %}
+                {% for message in messages %}
+                <div {% if message.tags %} class="alert alert-{{message.tags}}" {% endif %}>
+                    <button class="close" data-dismiss="alert" type="button">×</button>
+                    {{message}}
+                </div>
+                {% endfor %}
+            {% endif %}
+        </center>
+    </div>
+
+    <div id="content-data" class="container" style="margin-left:121px;">
+        <div id="login_wrapper" style="left:50%;margin-left:-350px;margin-top:-220px;position:absolute;top:50%">
+            <div id="login_form">
+                <img class="logo" src="/static/img/logo-big.png" alt="logo"/>
+                <p class="line"></p>
+                <form id="paba_login_form" class="form-horizontal" style="margin-top:100px" action="/login" method="POST">
+                    {% csrf_token %}
+                    <input type="text" name="username" placeholder="Username"/>
+                    <input type="password" name="password" placeholder="Password"/>
+                    <br>
+                    <br>
+                    <button class="btn btn-primary" type="submit">Sign in</button>
+                </form>
+            </div>
+        </div>
+    </div> 
+</body>
+</html>

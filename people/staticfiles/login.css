@@ -1,0 +1,72 @@
+/* LOGIN */
+
+body {
+    background: none repeat scroll 0 0 #DFDFDF;
+    font-family: "Calibri";
+    font-size: 13px;
+    height: 100%;
+}
+
+header {
+	background: url("/static/img/header-background.png") repeat-x scroll 0 0 transparent;
+    height: 47px;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+header div.logo {
+    color: #E3E3E3;
+    margin: 4px 0 0;
+    padding: 0;
+    position: absolute;
+}
+
+header a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+#content-data {
+    font-size: 12px;
+    padding: 37px 0 0;
+}
+
+#login_form {
+    background: none repeat scroll 0 0 #CACACA;
+    border: 1px solid #B7B7B7;
+    border-radius: 13px 13px 13px 13px;
+    height: 300px;
+    margin: auto;
+    width: 700px;
+}
+
+#login_form img.logo {
+    float: left;
+    margin-left: 50px;
+    margin-right: 25px;
+    margin-top: 68px;
+    width: 160px;
+}
+
+#login_form p.line {
+    background: none repeat scroll 0 0 #B7B7B7;
+    float: left;
+    height: 215px;
+    margin-left: 25px;
+    margin-top: 45px;
+    width: 1px;
+}
+
+#login_form form {
+    float: right;
+    margin-right: 25px;
+    margin-top: 115px;
+}
+
+#login_form form input[type="password"], #login_form form input[type="text"] {
+    width: 173px;
+}
