@@ -1,6 +1,6 @@
 from django.db import IntegrityError
 from django.http import HttpResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
@@ -11,6 +11,7 @@ import json
 
 def index(request):
     return render(request, 'login.html')
+
 
 def login_view(request):
 	if request.method == 'POST':
@@ -25,22 +26,22 @@ def login_view(request):
 			messages.warning(request, 'Incorrect username or password.')
 			return redirect(index)
 
+
 def logout_view(request):
-	try:
-		del request.session ['username']
-	except KeyError:
-		pass
 	logout(request)
 	return redirect(index)
+
 
 @login_required
 def people(request):
 	all_persons = User.objects.all()
 	return render(request, 'people.html', {'persons':all_persons})
 
+
 @login_required
 def add_new_person(request):
 	return render(request, 'add_new_person.html')
+
 
 @login_required
 def save_person(request):
@@ -58,15 +59,18 @@ def save_person(request):
 			messages.warning(request, 'Username already exists!')
 			return redirect(add_new_person)
 
-@login_required
-def person_profile(request, person_id):
-	person = User.objects.get(id=person_id)
-	return render(request, 'person_profile.html', {'person':person})
 
 @login_required
-def delete_person(request, person_id):
-	person = User.objects.get(id=person_id).delete()
+def person_profile(request, user_id):
+	person = get_object_or_404(User, pk=user_id)
+	return render(request, 'person_profile.html', {'person':person})
+
+
+@login_required
+def delete_person(request, user_id):
+	person = User.objects.get(id=user_id).delete()
 	return redirect(people)
+
 
 def autocomplete(request):
 	all_persons = User.objects.all()

@@ -15,8 +15,8 @@ urlpatterns = patterns('',
     url(r'^people$', 'core.views.people'),
     url(r'^add_new_person$', 'core.views.add_new_person'),
     url(r'^save_person$', 'core.views.save_person'),
-    url(r'^person_profile/(?P<person_id>\d+)$', 'core.views.person_profile'),
-    url(r'^delete_person/(?P<person_id>\d+)$', 'core.views.delete_person'),
+    url(r'^person_profile/(?P<user_id>\d+)$', 'core.views.person_profile'),
+    url(r'^delete_person/(?P<user_id>\d+)$', 'core.views.delete_person'),
     url(r'^autocomplete$', 'core.views.autocomplete'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
