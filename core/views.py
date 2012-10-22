@@ -68,7 +68,7 @@ def person_profile(request, user_id):
 
 @login_required
 def delete_person(request, user_id):
-	person = User.objects.get(id=user_id).delete()
+	person = get_object_or_404(User, id=user_id).delete()
 	return redirect(people)
 
 
