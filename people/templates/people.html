@@ -6,7 +6,7 @@
 	<div class="row up-down-padding">
 		<div class="span6">
 			<div style="margin-left:20px">
-				<a class="btn btn-primary" href="/people/add_new_person">
+				<a class="btn btn-primary" href="/people/add">
 					<i class="icon-plus icon-white"></i> Add new person
 				</a>
 			</div>
@@ -39,8 +39,8 @@
 						<td>{{person.username}}</td>
 						<td>
 							<div class="btn-group">
-								<a class="btn" href="/people/person_profile/{{person.id}}"><i class="icon-search icon-black"></i></a>
-								<a class="btn" href="/people/delete_person/{{person.id}}"><i class="icon-trash icon-black"></i></a>
+								<a class="btn" href="/people/{{person.id}}"><i class="icon-search icon-black"></i></a>
+								<a class="btn" href="/people/delete/{{person.id}}"><i class="icon-trash icon-black"></i></a>
 							</div>
 						</td>
 					</tr>
@@ -58,7 +58,7 @@
 				source:data,
 				select: function(event, ui){
 					$("#autocomplete").val(ui.item.label);
-					window.location = "/people/person_profile/" + ui.item.value;
+					window.location = "/people/" + ui.item.value;
 					return false;
 				}
 			});
