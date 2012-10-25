@@ -6,6 +6,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
+from core.forms import UserForm
+
 import json
 
 
@@ -40,22 +42,19 @@ def people(request):
 
 @login_required
 def add_new_person(request):
-	return render(request, 'add_new_person.html')
+	new_user_form = UserForm(request.POST)
+	return render(request, 'add_new_person.html', {'form':new_user_form})
 
 
 @login_required
 def save_person(request):
 	if request.method == 'POST':
-		first_name = request.POST.get('first_name','')
-		last_name = request.POST.get('last_name','')
-		username = request.POST.get('username','')
-		password = request.POST.get('password','')
-		person = User(first_name=first_name, last_name=last_name, username=username)
-		person.set_password(password)
-		try:
-			person.save()
+		user = User()
+		form = UserForm(request.POST, instance=user)
+		if form.is_valid():
+			u = form.save()
 			return redirect(people)
-		except IntegrityError:
+		else:
 			messages.warning(request, 'Username already exists!')
 			return redirect(add_new_person)
 

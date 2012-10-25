@@ -9,27 +9,27 @@
 				{% csrf_token %}
 				<legend>Enter person data</legend>
 				<div class="control-group">
-					<label class="control-label">First name</label>
+					<label class="control-label">{{form.first_name.label}}</label>
 					<div class="controls">
-						<input name="first_name" type="text"/>
+						{{form.first_name}}
 					</div>
 				</div>
 				<div class="control-group">
-					<label class="control-label">Last name</label>
+					<label class="control-label">{{form.last_name.label}}</label>
 					<div class="controls">
-						<input name="last_name" type="text"/>
+						{{form.last_name}}
 					</div>
 				</div>
 				<div class="control-group">
-					<label class="control-label">Username</label>
+					<label class="control-label">{{form.username.label}}</label>
 					<div class="controls">
-						<input name="username" type="text"/>
+						{{form.username}}
 					</div>
 				</div>
 				<div class="control-group">
-					<label class="control-label">Password</label>
+					<label class="control-label">{{form.password.label}}</label>
 					<div class="controls">
-						<input name="password" type="text"/>
+						{{form.password}}
 					</div>
 				</div>
 				<div class="control-group">
