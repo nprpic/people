@@ -12,12 +12,7 @@ urlpatterns = patterns('',
     url(r'^$', 'core.views.index'),
     url(r'^login$', 'django.contrib.auth.views.login', {'template_name':'people/login.html'}),
     url(r'^logout$', 'django.contrib.auth.views.logout_then_login', {'login_url':'/'}),
-    url(r'^people$', 'core.views.people'),
-    url(r'^people/add$', 'core.views.add_new_person'),
-    url(r'^people/save$', 'core.views.save_person'),
-    url(r'^people/(?P<user_id>\d+)$', 'core.views.person_profile'),
-    url(r'^people/(?P<user_id>\d+)/delete$', 'core.views.delete_person'),
-    url(r'^autocomplete$', 'core.views.autocomplete'),
+    url(r'^core/', include('core.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

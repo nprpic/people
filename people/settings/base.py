@@ -245,4 +245,4 @@ else:
 
 AUTH_PROFILE_MODULE = 'core.Person'
 
-LOGIN_REDIRECT_URL = '/people'
+LOGIN_REDIRECT_URL = '/core/people'

@@ -6,7 +6,7 @@
 	<div class="row up-down-padding">
 		<div class="span6">
 			<div style="margin-left:20px">
-				<a class="btn btn-primary" href="/people/add">
+				<a class="btn btn-primary" href="/core/people/add">
 					<i class="icon-plus icon-white"></i> Add new person
 				</a>
 			</div>
@@ -39,8 +39,8 @@
 						<td>{{person.username}}</td>
 						<td>
 							<div class="btn-group">
-								<a class="btn" href="/people/{{person.id}}"><i class="icon-search icon-black"></i></a>
-								<a class="btn" href="/people/{{person.id}}/delete"><i class="icon-trash icon-black"></i></a>
+								<a class="btn" href="/core/people/{{person.id}}"><i class="icon-search icon-black"></i></a>
+								<a class="btn" href="/core/people/{{person.id}}/delete"><i class="icon-trash icon-black"></i></a>
 							</div>
 						</td>
 					</tr>
@@ -53,12 +53,12 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		$.getJSON("/autocomplete", function(data){
+		$.getJSON("/core/autocomplete", function(data){
 			$("#autocomplete").autocomplete({
 				source:data,
 				select: function(event, ui){
 					$("#autocomplete").val(ui.item.label);
-					window.location = "/people/" + ui.item.value;
+					window.location = "/core/people/" + ui.item.value;
 					return false;
 				}
 			});

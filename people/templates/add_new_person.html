@@ -5,7 +5,7 @@
 <div class="container round-light-container">
 	<div class="row up-down-padding">
 		<div class="span12">
-			<form class="form-horizontal left-right-padding" action="/people/save" method="POST">
+			<form class="form-horizontal left-right-padding" action="/core/people/save" method="POST">
 				{% csrf_token %}
 				<legend>Enter person data</legend>
 				<div class="control-group">
@@ -35,7 +35,7 @@
 				<div class="control-group">
 					<div class="controls">
 						<button type="submit" class="btn btn-primary"><i class="icon-ok icon-white"></i> Save</button>
-						<a class="btn" href="/people"><i class="icon-refresh icon-black"></i> Cancel</a>
+						<a class="btn" href="/core/people"><i class="icon-refresh icon-black"></i> Cancel</a>
 					</div>
 				</div>
 			</form>
