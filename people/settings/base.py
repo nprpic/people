@@ -244,3 +244,5 @@ else:
     LOGGING = BASE_LOGGING
 
 AUTH_PROFILE_MODULE = 'core.Person'
+
+LOGIN_REDIRECT_URL = '/people'
