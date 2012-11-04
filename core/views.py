@@ -15,23 +15,23 @@ def index(request):
     return render(request, 'login.html')
 
 
-def login_view(request):
-	if request.method == 'POST':
-		username = request.POST.get('username','')
-		password = request.POST.get('password','')
-		user = authenticate(username=username, password=password)
-		if user is not None:
-			login(request, user)
-			request.session['username'] = username
-			return redirect(people)
-		else:
-			messages.warning(request, 'Incorrect username or password.')
-			return redirect(index)
+# def login_view(request):
+# 	if request.method == 'POST':
+# 		username = request.POST.get('username','')
+# 		password = request.POST.get('password','')
+# 		user = authenticate(username=username, password=password)
+# 		if user is not None:
+# 			login(request, user)
+# 			request.session['username'] = username
+# 			return redirect(people)
+# 		else:
+# 			messages.warning(request, 'Incorrect username or password.')
+# 			return redirect(index)
 
 
-def logout_view(request):
-	logout(request)
-	return redirect(index)
+# def logout_view(request):
+# 	logout(request)
+# 	return redirect(index)
 
 
 @login_required
