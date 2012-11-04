@@ -11,7 +11,7 @@ urlpatterns = patterns('',
 
     url(r'^$', 'core.views.index'),
     url(r'^login$', 'django.contrib.auth.views.login', {'template_name':'people/login.html'}),
-    url(r'^logout$', 'django.contrib.auth.views.logout_then_login', {'template_name':'people/login.html'}),
+    url(r'^logout$', 'django.contrib.auth.views.logout_then_login', {'login_url':'/'}),
     url(r'^people$', 'core.views.people'),
     url(r'^people/add$', 'core.views.add_new_person'),
     url(r'^people/save$', 'core.views.save_person'),
