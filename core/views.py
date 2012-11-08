@@ -17,7 +17,7 @@ def index(request):
 
 @login_required
 def people(request):
-	all_persons = User.objects.all()
+	all_persons = User.objects.filter(is_active=True)
 	return render(request, 'people.html', {'persons':all_persons})
 
 
@@ -39,7 +39,9 @@ def person_profile(request, user_id):
 
 @login_required
 def delete_person(request, user_id):
-	person = get_object_or_404(User, id=user_id).delete()
+	person = get_object_or_404(User, id=user_id)
+	person.is_active = False
+	person.save()
 	return redirect(people)
 
 
