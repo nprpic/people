@@ -11,7 +11,6 @@ urlpatterns = patterns('',
 
     url(r'^people$', 'core.views.people'),
     url(r'^people/add$', 'core.views.add_new_person'),
-    url(r'^people/save$', 'core.views.save_person'),
     url(r'^people/(?P<user_id>\d+)$', 'core.views.person_profile'),
     url(r'^people/(?P<user_id>\d+)/delete$', 'core.views.delete_person'),
     url(r'^autocomplete$', 'core.views.autocomplete'),

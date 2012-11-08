@@ -15,25 +15,6 @@ def index(request):
     return render(request, 'login.html')
 
 
-# def login_view(request):
-# 	if request.method == 'POST':
-# 		username = request.POST.get('username','')
-# 		password = request.POST.get('password','')
-# 		user = authenticate(username=username, password=password)
-# 		if user is not None:
-# 			login(request, user)
-# 			request.session['username'] = username
-# 			return redirect(people)
-# 		else:
-# 			messages.warning(request, 'Incorrect username or password.')
-# 			return redirect(index)
-
-
-# def logout_view(request):
-# 	logout(request)
-# 	return redirect(index)
-
-
 @login_required
 def people(request):
 	all_persons = User.objects.all()
@@ -42,21 +23,12 @@ def people(request):
 
 @login_required
 def add_new_person(request):
-	new_user_form = UserForm(request.POST)
-	return render(request, 'add_new_person.html', {'form':new_user_form})
-
-
-@login_required
-def save_person(request):
-	if request.method == 'POST':
-		user = User()
-		form = UserForm(request.POST, instance=user)
-		if form.is_valid():
-			u = form.save()
-			return redirect(people)
-		else:
-			messages.warning(request, 'Username already exists!')
-			return redirect(add_new_person)
+	user = User()
+	user_form = UserForm(request.POST or None)
+	if user_form.is_valid():
+		user = user_form.save()
+		return redirect(people) 
+	return render(request, 'add_new_person.html', {'form':user_form})
 
 
 @login_required
