@@ -8,30 +8,14 @@
 			<form class="form-horizontal left-right-padding" action="/core/people/add" method="POST">
 				{% csrf_token %}
 				<legend>Enter person data</legend>
+				{% for field in form %}
 				<div class="control-group">
-					<label class="control-label">{{form.first_name.label}}</label>
+					<label class="control-label">{{field.label_tag}}</label>
 					<div class="controls">
-						{{form.first_name}}
+						{{field}}
 					</div>
 				</div>
-				<div class="control-group">
-					<label class="control-label">{{form.last_name.label}}</label>
-					<div class="controls">
-						{{form.last_name}}
-					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label">{{form.username.label}}</label>
-					<div class="controls">
-						{{form.username}}
-					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label">{{form.password.label}}</label>
-					<div class="controls">
-						{{form.password}}
-					</div>
-				</div>
+				{% endfor %}
 				<div class="control-group">
 					<div class="controls">
 						<button type="submit" class="btn btn-primary"><i class="icon-ok icon-white"></i> Save</button>
