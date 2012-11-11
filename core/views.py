@@ -46,6 +46,6 @@ def delete_person(request, user_id):
 
 
 def autocomplete(request):
-	all_persons = User.objects.all()
-	val = [{"label":p.first_name + " " + p.last_name, "value":p.id} for p in all_persons]
+	all_persons = User.objects.filter(is_active=True)
+	val = [{"text":p.first_name + " " + p.last_name, "id":p.id} for p in all_persons]
 	return HttpResponse(json.dumps(val), mimetype='application/json')

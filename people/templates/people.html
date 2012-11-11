@@ -13,9 +13,7 @@
 		</div>
 		<div class="span6">
 			<div class="pull-right" style="margin-right:20px">
-				<form class="form-search">
-					<input id="autocomplete" class="input-large" type="text" placeholder="Search people...">
-				</form>
+				<input class="select2-input" id="typeahead" type="hidden">
 			</div>
 		</div>
 	</div>
@@ -53,15 +51,17 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		$.getJSON("/core/autocomplete", function(data){
-			$("#autocomplete").autocomplete({
-				source:data,
-				select: function(event, ui){
-					$("#autocomplete").val(ui.item.label);
-					window.location = "/core/people/" + ui.item.value;
-					return false;
-				}
-			});
+		$.getJSON("/core/autocomplete", function(val){
+			$('#typeahead').select2({
+			width: "200px",
+			placeholder: "Select a person...",
+			data: val
+		});
+
+		$('#typeahead').on('change', function(event){
+			console.log(event.val)
+			window.location = "/core/people/" + event.val;
+		});
 		});
 	})
 </script>
