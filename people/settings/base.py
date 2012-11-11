@@ -1,5 +1,6 @@
 # Django settings
 
+from django.core.urlresolvers import reverse_lazy
 import os.path
 
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
@@ -245,4 +246,4 @@ else:
 
 AUTH_PROFILE_MODULE = 'core.Person'
 
-LOGIN_REDIRECT_URL = '/core/people'
+LOGIN_REDIRECT_URL = reverse_lazy('person_profile')
