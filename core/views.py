@@ -32,6 +32,13 @@ def add_new_person(request):
 
 
 @login_required
+def welcome(request):
+	user_id = request.user.id
+	person = get_object_or_404(User, id=user_id)
+	return render(request, 'person_profile.html', {'person':person})
+
+
+@login_required
 def person_profile(request, user_id):
 	person = get_object_or_404(User, pk=user_id)
 	return render(request, 'person_profile.html', {'person':person})

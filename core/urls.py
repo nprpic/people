@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     url(r'^people/add$', 'core.views.add_new_person', name='add_person'),
     url(r'^people/(?P<user_id>\d+)$', 'core.views.person_profile', name='person_profile'),
     url(r'^people/(?P<user_id>\d+)/delete$', 'core.views.delete_person', name='delete_person'),
+    url(r'^welcome$', 'core.views.welcome', name='welcome'),
     url(r'^autocomplete$', 'core.views.autocomplete', name='autocomplete'),
 )
 
