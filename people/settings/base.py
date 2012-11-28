@@ -246,4 +246,4 @@ else:
 
 AUTH_PROFILE_MODULE = 'core.Person'
 
-LOGIN_REDIRECT_URL = reverse_lazy('person_profile')
+LOGIN_REDIRECT_URL = reverse_lazy('welcome')
