@@ -7,6 +7,7 @@
     <link href="{{ STATIC_URL }}ui-lightness/jquery-ui-1.8.23.custom.css" rel="stylesheet"/>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
 	<script type="text/javascript" src="{{ STATIC_URL }}bootstrap/bootstrap-alert.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}bootstrap/bootstrap-dropdown.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}select2.min.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}jquery-ui-1.8.23.custom.min.js"></script>
 </head>
@@ -18,7 +19,16 @@
                 <div class="nav-collapse">
                     <ul class="nav">
                         <li><a href="/core/people">Users</a></li>
-                        <li><a href="/hr">Human Resources</a></li>
+                        <li id="drop-hr" class="dropdown" data-dropdown="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" data-target="#">
+                                Human Resources
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/hr/contracts">Contracts</a></li>
+                                <li><a href="/hr/absences">Absences</a></li>
+                            </ul>
+                        </li>
                         <li><a href="/pm">Project Management</a></li>
                         <li><a href="/track">Time Tracking</a></li>
                     </ul>
@@ -49,5 +59,7 @@
      <div class="container">
         {% block container %}{% endblock %}
     </div>
+
+    
 </body>
 </html>
