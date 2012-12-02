@@ -18,7 +18,7 @@
             <div class="container">
                 <div class="nav-collapse">
                     <ul class="nav">
-                        <li><a href="/core/people">Users</a></li>
+                        <li><a href="/core/people">User administration</a></li>
                         <li id="drop-hr" class="dropdown" data-dropdown="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" data-target="#">
                                 Human Resources
@@ -29,7 +29,16 @@
                                 <li><a href="/hr/absences">Absences</a></li>
                             </ul>
                         </li>
-                        <li><a href="/pm">Project Management</a></li>
+                        <li id="drop-pm" class="dropdown" data-dropdown="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" data-target="#">
+                                Project Management
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/pm/clients">Clients</a></li>
+                                <li><a href="/hr/projects">Projects</a></li>
+                            </ul>
+                        </li>
                         <li><a href="/track">Time Tracking</a></li>
                     </ul>
                     <ul class="nav pull-right">
