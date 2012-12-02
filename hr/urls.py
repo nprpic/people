@@ -9,7 +9,8 @@ urlpatterns = patterns('',
     # url(r'^$', 'skeletor.views.home', name='home'),
     # url(r'^skeletor/', include('skeletor.foo.urls')),
 
-    url(r'^$', 'hr.views.human_resources'),
+    url(r'^contracts$', 'hr.views.contracts'),
+    url(r'^absences$', 'hr.views.absences'),
 
 )
 

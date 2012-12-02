@@ -5,5 +5,11 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 
-def human_resources(request):
-	return render(request, 'human_resources.html')
+@login_required
+def contracts(request):
+	return render(request, 'contracts.html')
+
+
+@login_required
+def absences(request):
+	return render(request, 'absences.html')
