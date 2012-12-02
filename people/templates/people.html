@@ -21,28 +21,32 @@
 	<div class="row">
 		<div class="span12">
 			<div class="left-right-padding">
-				<table class="table">
-					<tr>
-						<th>Person id</th>
-						<th>First name</th>
-						<th>Last name</th>
-						<th>Username</th>
-						<th>Action</th>
-					</tr>
-					{% for person in persons %}
-					<tr>
-						<td>{{person.id}}</td>
-						<td>{{person.first_name}}</td>
-						<td>{{person.last_name}}</td>
-						<td>{{person.username}}</td>
-						<td>
-							<div class="btn-group">
-								<a class="btn" href="/core/people/{{person.id}}"><i class="icon-search icon-black"></i></a>
-								<a class="btn" href="/core/people/{{person.id}}/delete"><i class="icon-trash icon-black"></i></a>
-							</div>
-						</td>
-					</tr>
-					{% endfor %}
+				<table id="table_users" class="table">
+					<thead>
+						<tr>
+							<th>Person id</th>
+							<th>First name</th>
+							<th>Last name</th>
+							<th>Username</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for person in persons %}
+						<tr>
+							<td>{{person.id}}</td>
+							<td>{{person.first_name}}</td>
+							<td>{{person.last_name}}</td>
+							<td>{{person.username}}</td>
+							<td>
+								<div class="btn-group">
+									<a class="btn" href="/core/people/{{person.id}}"><i class="icon-search icon-black"></i></a>
+									<a class="btn" href="/core/people/{{person.id}}/delete"><i class="icon-trash icon-black"></i></a>
+								</div>
+							</td>
+						</tr>
+						{% endfor %}
+					</tbody>
 				</table>
 			</div>
 		</div>
@@ -62,6 +66,12 @@
 			console.log(event.val)
 			window.location = "/core/people/" + event.val;
 		});
+		});
+
+		$('#table_users').dataTable({
+			"bFilter":false,
+			"bLengthChange":false,
+			"iDisplayLength":20
 		});
 	})
 </script>
