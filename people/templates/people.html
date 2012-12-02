@@ -20,8 +20,8 @@
 
 	<div class="row">
 		<div class="span12">
-			<div class="left-right-padding">
-				<table id="table_users" class="table">
+			<div class="dataTables_wrapper form-inline left-right-padding">
+				<table id="table_users" class="table table-striped dataTable">
 					<thead>
 						<tr>
 							<th>Person id</th>
@@ -31,7 +31,7 @@
 							<th>Action</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody aria-live="polite" aria-relevant="all">
 						{% for person in persons %}
 						<tr>
 							<td>{{person.id}}</td>
@@ -71,6 +71,7 @@
 		$('#table_users').dataTable({
 			"bFilter":false,
 			"bLengthChange":false,
+			"bSort":false,
 			"iDisplayLength":20
 		});
 	})
