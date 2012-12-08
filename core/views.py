@@ -49,6 +49,7 @@ def delete_person(request, user_id):
 	person = get_object_or_404(User, id=user_id)
 	person.is_active = False
 	person.save()
+	messages.warning(request, 'User deactivated!')
 	return redirect(people)
 
 
