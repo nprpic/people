@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     # url(r'^skeletor/', include('skeletor.foo.urls')),
 
     url(r'^contracts$', 'hr.views.contracts'),
+    url(r'^contracts/add$', 'hr.views.add_new_contract'),
     url(r'^absences$', 'hr.views.absences'),
 
 )
