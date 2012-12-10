@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from hr.models import Contract
 from hr.forms import ContractForm
+from core.models.person import Person
 
 
 @login_required
@@ -17,8 +18,13 @@ def add_new_contract(request):
 	contract = Contract()
 	contract_form = ContractForm(request.POST or None)
 	if contract_form.is_valid():
-		contract = contract_form.save()
-		return redirect(conracts) 
+		contract = contract_form.save(commit=False)
+		person = Person()
+		person.save()
+		contract.person = person
+		contract.save()
+		contract_form.save_m2m()
+		return redirect(contracts) 
 	return render(request, 'add_new_contract.html', {'form':contract_form})
 
 
