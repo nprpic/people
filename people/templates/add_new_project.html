@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block container %}
+
+<div class="container round-light-container">
+	<div class="row up-down-padding">
+		<div class="span12">
+			<form class="form-horizontal left-right-padding" action="/pm/projects/add" method="POST">
+				{% csrf_token %}
+				<legend>Enter project data</legend>
+				{% for field in form %}
+				<div class="control-group">
+					<label class="control-label">{{field.label_tag}}</label>
+					<div class="controls">
+						{{field}}
+					</div>
+				</div>
+				{% endfor %}
+				<div class="control-group">
+					<div class="controls">
+						<button type="submit" class="btn btn-primary"><i class="icon-ok icon-white"></i> Save</button>
+						<a class="btn" href="/pm/projects"><i class="icon-refresh icon-black"></i> Cancel</a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
