@@ -17,6 +17,41 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="row">
+		<div class="span12">
+			<div class="left-right-padding up-down-padding">
+				<table id="table_contracts" class="table table-striped table-bordered dataTable">
+					<thead>
+						<tr>
+							<th>Contract id</th>
+							<th>First name</th>
+							<th>Last name</th>
+							<th>Title</th>
+							<th>Type</th>
+							<th>Weekly hours</th>
+							<th>Hourly rate</th>
+							<th>Monthly salary</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for contract in contracts %}
+						<tr>
+							<td>{{contract.id}}</td>
+							<td>{{contract.person.user.first_name}}</td>
+							<td>{{contract.person.user.last_name}}</td>
+							<td>{{contract.title}}</td>
+							<td>{{contract.type}}</td>
+							<td>{{contract.weekly_hours}}</td>
+							<td>{{contract.hourly_rate}}</td>
+							<td>{{contract.monthly_salary}}</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 </div>
 
 {% endblock %}
