@@ -28,6 +28,7 @@ def add_new_person(request):
 	if user_form.is_valid():
 		user = user_form.save()
 		return redirect(people) 
+	messages.warning(request, u', '.join(user_form.errors))
 	return render(request, 'add_new_person.html', {'form':user_form})
 
 
