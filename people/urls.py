@@ -14,6 +14,7 @@ urlpatterns = patterns('',
     url(r'^logout$', 'django.contrib.auth.views.logout_then_login', {'login_url':'/'}),
     url(r'^core/', include('core.urls')),
     url(r'^hr/', include('hr.urls')),
+    url(r'^pm/', include('pm.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
