@@ -3,8 +3,8 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from pm.models import Client, Project
-from pm.forms import ClientForm, ProjectForm
+from pm.models import Client, Project, Allocation
+from pm.forms import ClientForm, ProjectForm, AllocationForm
 from core.models.person import Person
 
 
@@ -40,3 +40,23 @@ def add_new_project(request):
 		return redirect(projects)
 	messages.warning(request, u', '.join(project_form.errors))
 	return render(request, 'add_new_project.html', {'form':project_form})
+
+
+@login_required
+def management(request):
+	all_allocations = Allocation.objects.all()
+	return render(request, 'management.html', {'allocations':all_allocations})
+
+
+@login_required
+def add_new_management_allocation(request):
+	allocation_form = AllocationForm(request.POST or None)
+	if allocation_form.is_valid():
+		allocation = allocation_form.save(commit=False)
+		allocation.person = allocation_form.cleaned_data['person'].get_profile()
+		allocation.project = allocation_form.cleaned_data['project']
+		allocation.save()
+		return redirect(management)
+	else:
+		messages.warning(request, u', '.join(allocation_form.errors))
+	return render(request, 'add_new_allocation.html', {'form':allocation_form})

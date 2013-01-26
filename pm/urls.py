@@ -13,6 +13,8 @@ urlpatterns = patterns('',
     url(r'^clients/add$', 'pm.views.add_new_client'),
     url(r'^projects$', 'pm.views.projects'),
     url(r'^projects/add$', 'pm.views.add_new_project'),
+    url(r'^management$', 'pm.views.management'),
+    url(r'^allocation/add$', 'pm.views.add_new_management_allocation'),
 
 
 )

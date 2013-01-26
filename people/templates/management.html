@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block container %}
+
+<div class="container round-light-container">
+	<div class="row up-down-padding">
+		<div class="span6">
+			<div style="margin-left:20px">
+				<a class="btn btn-primary" href="/pm/allocation/add">
+					<i class="icon-plus icon-white"></i> Add new allocation
+				</a>
+			</div>
+		</div>
+		<div class="span6">
+			<div style="margin-left:20px">
+				<p>...</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="span12">
+			<div class="left-right-padding up-down-padding">
+				<table id="table_allocations" class="table table-striped table-bordered dataTable">
+					<thead>
+						<tr>
+							<th>Allocation id</th>
+							<th>Project</th>
+							<th>Client</th>
+							<th>Employee</th>
+							<th>Weekly hours</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for allocation in allocations %}
+						<tr>
+							<td>{{allocation.id}}</td>
+							<td>{{allocation.project.name}}</td>
+							<td>{{allocation.project.client.name}}</td>
+							<td>{{allocation.person.user.first_name}} {{allocation.person.user.last_name}}</td>
+							<td>{{allocation.weekly_hours}}</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
