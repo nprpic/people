@@ -15,6 +15,7 @@ urlpatterns = patterns('',
     url(r'^core/', include('core.urls')),
     url(r'^hr/', include('hr.urls')),
     url(r'^pm/', include('pm.urls')),
+    #url(r'^track/', include('track.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
