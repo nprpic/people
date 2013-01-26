@@ -10,7 +10,8 @@ class ContractForm(ModelForm):
 
 	class Meta:
 		model = Contract
-		fields = ('type','title','description','weekly_hours','hourly_rate','monthly_salary')
+		#fields = ('type','title','description','weekly_hours','hourly_rate','monthly_salary')
+		exclude = ('start', 'end',)
 
 class AbsenceForm(ModelForm):
 	person = ModelChoiceField(queryset=User.objects.filter(is_active=True))
