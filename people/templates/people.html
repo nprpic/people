@@ -24,24 +24,30 @@
 				<table id="table_users" class="table table-striped table-bordered dataTable">
 					<thead>
 						<tr>
-							<th>Person id</th>
 							<th>First name</th>
 							<th>Last name</th>
 							<th>Username</th>
+							<th>E-mail</th>
+							<th>Is staff</th>
 							<th>Action</th>
 						</tr>
 					</thead>
 					<tbody>
 						{% for person in persons %}
 						<tr>
-							<td>{{person.id}}</td>
 							<td>{{person.first_name}}</td>
 							<td>{{person.last_name}}</td>
 							<td>{{person.username}}</td>
+							<td>{{person.email}}</td>
+							<td>{{person.is_staff}}</td>
 							<td>
 								<div class="btn-group">
-									<a class="btn" href="/core/people/{{person.id}}"><i class="icon-search icon-black"></i></a>
-									<a class="btn" href="/core/people/{{person.id}}/delete"><i class="icon-trash icon-black"></i></a>
+									<a href="/core/people/{{person.id}}">
+										<img src="{{ STATIC_URL }}/img/search.png" title="View profile">
+									</a>
+									<a href="/core/people/{{person.id}}/delete" style="margin-left:5px" title="Deactivate user">
+										<img src="{{ STATIC_URL }}/img/delete.png">
+									</a>
 								</div>
 							</td>
 						</tr>
@@ -63,82 +69,14 @@
 		});
 
 		$('#typeahead').on('change', function(event){
-			console.log(event.val)
 			window.location = "/core/people/" + event.val;
 		});
 		});
 
-		var LISTING_RESULTS = [
-            {% for person in persons %}
-            [
-                '{{ person.first_name }}',
-                '{{ person.last_name }}',
-                '{{ person.username }}',
-                '{{ person.email }}',
-                '{{ person.is_staff }}',
-                {{person.id}}
-            ],
-            {% endfor %}
-            ];
-
-        var tbl = createTable("#table_users", [
-            { "sType": "hr_strings"},
-            { "sType": "hr_strings"},
-            { "sType": "hr_strings"},
-            { "sType": "hr_strings"},
-            { "sType": "eu_date"},
-            { "bSortable": false, "bVisible": true, "fnRender": function(obj){
-                var sReturn = obj.aData[ obj.iDataColumn ];
-                var fina_pdf_icon = '';
-
-                var action_icons = '';
-                if (sReturn.username == '{{session.username}}')
-                {
-                    action_icons = '<a href="/customer/'+sReturn.customer_id+'/action/'+sReturn.action_id+'/edit/">\
-                                       <img src="/static/images/buttons/edit.png" title="Uređivanje akcije" />\
-                                    </a>\
-                                    <a href="/customer/'+sReturn.customer_id+'/action/'+sReturn.action_id+'/delete/"\
-                                      onclick="return confirmDelete();">\
-                                        <img src="/static/images/buttons/delete.png" title="Brisanje akcije" />\
-                                    </a>';
-                }
-
-                if (sReturn.fina_pdf_url)
-                {
-                    fina_pdf_icon = '<a href="'+sReturn.fina_pdf_url+'">\
-                                      <img src="/static/images/go_to2.png" title="PDF dokument preuzet s FINA stranice" />\
-                                      </a>';
-                }
-                return '<div>\
-                            <div style="float: left">\
-                              <a href="/action/'+sReturn.action_id+'/pdf/">\
-                                  <img src="/static/images/buttons/document-pdf.png" title="PDF akcije" />\
-                              </a>\
-                            </div>\
-                            <div style="margin-left:20px">\
-                            '+fina_pdf_icon+'\
-                            '+action_icons+'\
-                            </div>\
-                          </div>';
-            }}
-        ], 30, [[ 5, "desc" ]], LISTING_RESULTS,
-        {
-            sPlaceHolder: "head:before",
-            aoColumns: [
-                { type: "text" },
-                { type: "text" },
-                { type: "checkbox" },
-                { type: "date" },
-                { type: "text" },
-                { type: "date" },
-                null
-            ]
-        });
-
 		$('#table_users').dataTable({
 			"bFilter":false,
 			"bLengthChange":false,
-			"iDisplayLength":12,
+			"iDisplayLength":10,
 			"sDom": '<"top"p>t<"bottom"p>',
 			"sPaginationType": "bootstrap",
 		});

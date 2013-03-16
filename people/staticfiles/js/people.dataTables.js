@@ -1,3 +1,17 @@
+/* API method to get paging information */
+$.fn.dataTableExt.oApi.fnPagingInfo = function ( oSettings )
+{
+    return {
+        "iStart":         oSettings._iDisplayStart,
+        "iEnd":           oSettings.fnDisplayEnd(),
+        "iLength":        oSettings._iDisplayLength,
+        "iTotal":         oSettings.fnRecordsTotal(),
+        "iFilteredTotal": oSettings.fnRecordsDisplay(),
+        "iPage":          Math.ceil( oSettings._iDisplayStart / oSettings._iDisplayLength ),
+        "iTotalPages":    Math.ceil( oSettings.fnRecordsDisplay() / oSettings._iDisplayLength )
+    };
+}
+
 /* Bootstrap style pagination control */
 $.extend( $.fn.dataTableExt.oPagination, {
     "bootstrap": {
@@ -14,7 +28,7 @@ $.extend( $.fn.dataTableExt.oPagination, {
                 '<ul>'+
                     '<li class="prev disabled"><a href="#">&larr; '+oLang.sPrevious+'</a></li>'+
                     '<li class="next disabled"><a href="#">'+oLang.sNext+' &rarr; </a></li>'+
-                '</ul>'+
+                '</ul>'
             );
             var els = $('a', nPaging);
             $(els[0]).bind( 'click.DT', { action: "first" }, fnClickHandler );
@@ -83,76 +97,3 @@ $.extend( $.fn.dataTableExt.oPagination, {
         }
     }
 } );
-
-function createTable(id, fields, iDisplayLength, aaSorting, aaData, columnFilter, bStateSave){
-    var _bStateSave = (bStateSave == false) ? false : true;
-    var oTable = $(id).dataTable( {
-        "bJQueryUI": true,
-        "oLanguage": {
-            "sProcessing": "Molimo pri&#269;ekajte...",
-            "sLengthMenu": "Prikazano _MENU_ zapisa",
-            "sZeroRecords": "Nema zapisa za prikaz",
-            "sEmptyTable": "Nema zapisa za prikaz",
-            "sLoadingRecords": "U&#269;itavam...",
-            "sInfo": "Prikazano _START_ do _END_ od ukupno _TOTAL_ zapisa",
-            "sInfoEmpty": "Prikazano 0 do 0 od ukupno 0 zapisa",
-            "sInfoFiltered": "(filtrirano od ukupno _MAX_ zapisa)",
-            "sInfoPostFix": "",
-            "sSearch": "Filtriraj",
-            "sUrl": "",
-            "oPaginate": {
-                "sFirst":    "Prva",
-                "sPrevious": "Prethodna",
-                "sNext":     "Sljede&#263;a",
-                "sLast":     "Posljednja"
-            }
-        },
-        "fnRowCallback": function(nRow, aData, iDisplayIndex, iDisplayIndexFull){
-            $(nRow).attr('data-id', aData[aData.length-1]);
-            return nRow;
-        },
-        "sDom": '<"top"p>t<"bottom"p>',
-        "sPaginationType": "bootstrap",
-
-        "iDisplayLength": iDisplayLength,
-        "bStateSave": _bStateSave,
-        "aoColumns": fields,
-        "bInfo": false,
-        "bPaginate": true,
-        "aaSorting": aaSorting,
-
-        "aaData": aaData,
-    });
-
-    if (columnFilter)
-    {
-        oTable.columnFilter(columnFilter);
-    }
-    $(id + " thead a.search_adv_show").click(function(){
-        showAndClearAdvSearch(this, id);
-    })
-
-    $(id + " thead a.search_adv_close").click(function(){
-        closeAndClearAdvSearch(id);
-    })
-
-    return oTable;
-}
-
-// Zatvaranje naprednog pretrazivanja
-function closeAndClearAdvSearch(id){
-    $(id + ' .filter_header').hide();
-
-    return false;
-}
-
-function showAndClearAdvSearch(element, id){
-    var object = $(element).parent().parent().parent().parent().find('.filter_header');
-    if (object.is(':visible')){
-        closeAndClearAdvSearch(id);
-    }
-    else {
-        $(element).parent().parent().parent().parent().find('.filter_header').show();
-    }
-    return false;
-}
