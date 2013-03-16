@@ -12,9 +12,10 @@ urlpatterns = patterns('',
     url(r'^contracts$', 'hr.views.contracts'),
     url(r'^contracts/add$', 'hr.views.add_new_contract'),
     url(r'^contracts/(?P<contract_id>\d+)/delete$', 'hr.views.delete_contract'),
+    url(r'^contracts/autocomplete$', 'hr.views.autocomplete_contract'),
     url(r'^absences$', 'hr.views.absences'),
     url(r'^absences/add$', 'hr.views.add_new_absence'),
-    url(r'^autocomplete$', 'hr.views.autocomplete'),
+    url(r'^absences/autocomplete$', 'hr.views.autocomplete_absence'),
 
 
 )
