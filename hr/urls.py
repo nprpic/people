@@ -15,7 +15,6 @@ urlpatterns = patterns('',
     url(r'^contracts/autocomplete$', 'hr.views.autocomplete_contract'),
     url(r'^absences$', 'hr.views.absences'),
     url(r'^absences/add$', 'hr.views.add_new_absence'),
-    url(r'^absences/autocomplete$', 'hr.views.autocomplete_absence'),
 
 
 )

@@ -3,6 +3,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.db.models import Count
 from hr.models import Contract, Absence
 from hr.forms import ContractForm, AbsenceForm
 from core.models.person import Person
@@ -54,7 +55,15 @@ def add_new_absence(request):
 
 # to do: izbaciti duple osobe iz autocompletea
 def autocomplete_contract(request):
-	all_contracts = Contract.objects.filter(person__user__is_active=True)
-	val = [{"text":c.person.user.first_name + " " + c.person.user.last_name,
-	 "id":c.person.id} for c in all_contracts]
+	all_contracts = Contract.objects.filter(person__user__is_active=True)\
+	  .values('person__id', 'person__user__first_name', 'person__user__last_name')\
+	  .annotate(Count("person__id"))
+	val = [{
+		"text": p['person__user__first_name'] + " " + p['person__user__last_name'],
+		"id": p['person__id']
+	} for p in all_contracts]
 	return HttpResponse(json.dumps(val), mimetype='application/json')
+
+
+
+ 
