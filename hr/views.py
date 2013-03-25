@@ -53,7 +53,7 @@ def add_new_absence(request):
 	messages.warning(request, u', '.join(absence_form.errors))
 	return render(request, 'add_new_absence.html', {'form':absence_form})
 
-# to do: izbaciti duple osobe iz autocompletea
+
 def autocomplete_contract(request):
 	all_contracts = Contract.objects.filter(person__user__is_active=True)\
 	  .values('person__id', 'person__user__first_name', 'person__user__last_name')\

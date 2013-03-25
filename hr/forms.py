@@ -15,7 +15,7 @@ class ContractForm(ModelForm):
 
 class AbsenceForm(ModelForm):
 	person = ModelChoiceField(queryset=User.objects.filter(is_active=True))
-	start = DateField(widget=SelectDateWidget)
+	start = DateField()
 	end = DateField(widget=SelectDateWidget)
 
 	class Meta:
